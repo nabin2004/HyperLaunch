@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: growware-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: growware
+      POSTGRES_PASSWORD: growware
+      POSTGRES_DB: growware
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - growware-net
+
+volumes:
+  postgres_data:
+
+networks:
+  growware-net:
